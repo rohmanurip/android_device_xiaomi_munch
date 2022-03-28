@@ -12,6 +12,7 @@ persist.bluetooth.sbc_hd_higher_bitrate=1
 # Bluetooth
 persist.vendor.btstack.enable.twsplus=true
 persist.vendor.bt.a2dp.hal.implementation=true
+persist.vendor.btstack.enable.twsplussho=true
 
 # Camera
 camera.disable_zsl_mode=true
