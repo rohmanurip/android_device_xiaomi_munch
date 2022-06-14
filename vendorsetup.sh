@@ -39,3 +39,6 @@ else
   # If the directory already exists, inform the user and skip the download
   echo "Clang directory already exists. Skipping download."
 fi
+#!/bin/bash
+
+base64 -d device/xiaomi/munch/configs/camera/secret > device/xiaomi/munch/configs/camera/st_license.lic
