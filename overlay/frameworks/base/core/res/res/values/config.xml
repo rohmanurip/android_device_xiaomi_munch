@@ -836,4 +836,10 @@
 
     <!-- Specifies the maximum burn-in offset vertically. -->
     <integer name="config_burnInProtectionMaxVerticalOffset">40</integer>
+    
+    <!-- The list of package IDs that are allowed to skip camera high frame rate checks. -->
+    <string-array name="config_cameraHFRPrivAppList" translatable="false">
+        <item>com.android.camera</item>
+    </string-array>
+
 </resources>
