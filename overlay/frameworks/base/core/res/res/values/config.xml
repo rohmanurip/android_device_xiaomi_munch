@@ -710,7 +710,7 @@
        <item>com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver</item>
        <item>com.google.android.gms/.stats.service.DropBoxEntryAddedReceiver</item>
     </string-array>
-   
+
     <!-- Bytes that the PinnerService will pin for Home app -->
     <integer name="config_pinnerHomePinBytes">6291456</integer>
 
