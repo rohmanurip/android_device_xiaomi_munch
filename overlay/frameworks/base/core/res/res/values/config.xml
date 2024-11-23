@@ -831,4 +831,6 @@
         <item>com.android.camera</item>
     </string-array>
 
+    <!-- Pocket Lock -->
+    <bool name="config_pocketModeSupported">false</bool>
 </resources>
