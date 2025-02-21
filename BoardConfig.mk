@@ -71,6 +71,9 @@ TARGET_NO_BOOTLOADER := true
 # Camera Malloc
 MALLOC_SVELTE_FOR_LIBC32 := true
 
+# Camera - Miui
+TARGET_CAMERA_SERVICE_EXT_LIB := //$(DEVICE_PATH):libcameraservice_extension.munch
+
 # Display
 BOARD_USES_ADRENO := true
 TARGET_SCREEN_DENSITY := 440
