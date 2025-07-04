@@ -1,4 +1,4 @@
 cd kernel/xiaomi/munch
-git submodule init && git submodule update 
+git submodule update --init --remote --merge
 rm -rf KernelSU-Next/userspace/su
 cd ../../..
