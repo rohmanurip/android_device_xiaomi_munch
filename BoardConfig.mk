@@ -102,9 +102,6 @@ override KERNEL_TOOLCHAIN_PREFIX_arm := arm-linux-android-
 # HWUI
 HWUI_COMPILE_FOR_PERF := true
 
-# Media
-TARGET_USES_ION := true
-
 # Miui Camera
 TARGET_INCLUDES_MIUI_CAMERA := true
 
