@@ -99,6 +99,9 @@ TARGET_KERNEL_CONFIG := vendor/munch_defconfig
 KERNEL_CC := CC=clang
 override KERNEL_TOOLCHAIN_PREFIX_arm := arm-linux-android-
 
+# HWUI
+HWUI_COMPILE_FOR_PERF := true
+
 # Media
 TARGET_USES_ION := true
 
