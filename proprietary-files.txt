@@ -532,6 +532,7 @@ vendor/lib64/libsdmextension.so
 vendor/lib64/libtinyxml2_1.so
 
 # Display calibration
+product/etc/displayconfig/display_id_4630946736638489729.xml:vendor/etc/displayconfig/display_id_4630946736638489729.xml
 vendor/etc/qdcm_calib_data_xiaomi_38_08_0a_cmd_mode_dsc_dsi_panel.xml
 
 # Display postprocessing
