@@ -20,6 +20,11 @@ PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := Poco
 PRODUCT_MODEL := 22021211RG
 
+LUNARIS_BUILD_TYPE := OFFICIAL
+BYPASS_CHARGE_SUPPORTED := true
+TARGET_ENABLE_BLUR := true
+WITH_GMS := true
+
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 # Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
