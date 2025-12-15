@@ -10,9 +10,6 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
-# Call the MiuiCamera setup
-#$(call inherit-product-if-exists, vendor/xiaomi/miuicamera/miuicamera.mk)
-
 # Call the Dolby setup
 TARGET_USES_DOLBY := true
 ifeq ($(TARGET_USES_DOLBY),true)
