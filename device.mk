@@ -11,7 +11,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
 # Call the MiuiCamera setup
-$(call inherit-product-if-exists, vendor/xiaomi/miuicamera/miuicamera.mk)
+#$(call inherit-product-if-exists, vendor/xiaomi/miuicamera/miuicamera.mk)
 
 # Call the Dolby setup
 TARGET_USES_DOLBY := true
@@ -23,7 +23,11 @@ endif
 $(call inherit-product, packages/apps/GameBar/gamebar.mk)
 
 # Private key for signed build
--include vendor/private-keys/keys/keys.mk
+-include vendor/priv-keys/keys.mk
+
+# Call MiuiCamera
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.product.mod_device=codename_global
 
 # Permissions
 PRODUCT_COPY_FILES += \

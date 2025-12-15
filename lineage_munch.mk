@@ -14,16 +14,23 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Inherit from munch device
 $(call inherit-product, device/xiaomi/munch/device.mk)
 
+# Inherit from MiuiCamera
+$(call inherit-product-if-exists, vendor/xiaomi/miuicamera/miuicamera.mk)
+
 PRODUCT_NAME := lineage_munch
 PRODUCT_DEVICE := munch
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := Poco
 PRODUCT_MODEL := 22021211RG
 
-LUNARIS_BUILD_TYPE := OFFICIAL
+# Maintainer Name
+ORION_MAINTAINER := rohmanurip
+
+# Enable/Disable GApps
+ORION_GAPPS := true
+
 BYPASS_CHARGE_SUPPORTED := true
 TARGET_ENABLE_BLUR := true
-WITH_GMS := true
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
