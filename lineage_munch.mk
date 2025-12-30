@@ -29,6 +29,8 @@ ORION_MAINTAINER := rohmanurip
 # Enable/Disable GApps
 ORION_GAPPS := true
 
+USE_PIXEL_CHARGING := true
+
 BYPASS_CHARGE_SUPPORTED := true
 TARGET_ENABLE_BLUR := true
 

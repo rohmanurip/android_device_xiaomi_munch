@@ -17,10 +17,10 @@ $(call inherit-product, hardware/dolby/dolby.mk)
 endif
 
 # GameBar Performance Overlay
-$(call inherit-product, packages/apps/GameBar/gamebar.mk)
+# $(call inherit-product, packages/apps/GameBar/gamebar.mk)
 
 # Private key for signed build
--include vendor/priv-keys/keys.mk
+-include vendor/private-keys/keys/keys.mk
 
 # Call MiuiCamera
 PRODUCT_PRODUCT_PROPERTIES += \
