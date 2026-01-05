@@ -20,7 +20,7 @@ $(call inherit-product, hardware/dolby/dolby.mk)
 endif
 
 # Private key for signed build
--include vendor/private-keys/keys/keys.mk
+-include vendor/priv-keys/keys.mk
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -173,6 +173,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libpiex_shim
+
+# Miuicam
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.product.mod_device=munch_global
 
 # Configstore
 PRODUCT_PACKAGES += \
