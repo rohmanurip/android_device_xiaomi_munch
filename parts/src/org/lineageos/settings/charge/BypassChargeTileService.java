@@ -23,6 +23,9 @@ import android.os.Looper;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import android.util.Log;
+import android.widget.Toast;
+
+import org.lineageos.settings.R;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
