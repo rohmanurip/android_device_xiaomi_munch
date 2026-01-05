@@ -74,18 +74,34 @@ public class BypassChargeTileService extends TileService {
         int currentState = tile.getState();
         boolean newEnabled = currentState != Tile.STATE_ACTIVE;
 
-        updateTileUI(newEnabled);
+        if (newEnabled) {
+            executorService.execute(() -> {
+                ChargeUtils.SafetyCheckResult safetyCheck = chargeUtils.performSafetyChecks();
 
         executorService.execute(() -> {
             chargeUtils.enableBypassCharge(newEnabled);
         });
     }
 
-    private void updateTileUI(boolean enabled) {
-        Tile tile = getQsTile();
-        if (tile != null) {
-            tile.setState(enabled ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE);
-            tile.updateTile();
+                if (!safetyCheck.isSafe()) {
+                    mainHandler.post(() -> {
+                        Toast.makeText(this, 
+                                getString(R.string.charge_bypass_safety_failed, 
+                                        safetyCheck.getReason()),
+                                Toast.LENGTH_LONG).show();
+                        updateTileUI(false);
+                    });
+                    return;
+                }
+
+                chargeUtils.enableBypassCharge(true);
+                mainHandler.post(() -> updateTileUI(true));
+            });
+        } else {
+            updateTileUI(false);
+            executorService.execute(() -> {
+                chargeUtils.enableBypassCharge(false);
+            });
         }
     }
 
