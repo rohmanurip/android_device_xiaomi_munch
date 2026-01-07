@@ -23,11 +23,17 @@ PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := Poco
 PRODUCT_MODEL := 22021211RG
 
-# Maintainer Name
-ORION_MAINTAINER := rohmanurip
+# Maintainer name
+AVIUM_MAINTAINER := rohmanurip
 
-# Enable/Disable GApps
-ORION_GAPPS := true
+AVIUM_BUILDTYPE := Unoffical
+AVIUM_VERSION_APPEND_TIME_OF_DAY := false
+
+# GMS
+#WITH_GMS := true
+#TARGET_GMS_TYPE := PICO
+#TARGET_INCLUDE_GOOGLEIME := true
+#TARGET_GOOGLEIME_OVERRIDE_IME := true
 
 USE_PIXEL_CHARGING := true
 

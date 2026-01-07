@@ -24,7 +24,7 @@ endif
 
 # Call MiuiCamera
 PRODUCT_PRODUCT_PROPERTIES += \
-    ro.product.mod_device=codename_global
+    ro.product.mod_device=munch_global
 
 # Permissions
 PRODUCT_COPY_FILES += \
