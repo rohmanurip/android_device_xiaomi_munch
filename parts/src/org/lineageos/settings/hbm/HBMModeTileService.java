@@ -27,6 +27,8 @@ import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import androidx.preference.PreferenceManager;
 import android.provider.Settings;
+import android.widget.Toast;
+import org.lineageos.settings.R;
 import org.lineageos.settings.utils.FileUtils;
 import org.lineageos.settings.display.*;
 
@@ -84,11 +86,14 @@ public class HBMModeTileService extends TileService {
         super.onClick();
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         final boolean dcDimmingEnabled = sharedPrefs.getBoolean(DcDimmingTileService.DC_DIMMING_ENABLE_KEY, false);
-        if (dcDimmingEnabled) {
+        final boolean enabled = !(sharedPrefs.getBoolean(HBM_KEY, false));
+
+        if (enabled && dcDimmingEnabled) {
+            // Prevent enabling HBM when DC Dimming is on
+            Toast.makeText(this, R.string.hbm_dc_dimming_conflict, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        final boolean enabled = !(sharedPrefs.getBoolean(HBM_KEY, false));
         if (enabled) {
             // Save current brightness level
             int currentBrightness = Settings.System.getInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 128);

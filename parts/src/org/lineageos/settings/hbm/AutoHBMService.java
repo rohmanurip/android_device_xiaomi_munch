@@ -26,6 +26,7 @@ import java.util.concurrent.Future;
 public class AutoHBMService extends Service {
     private static final String HBM = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/hbm";
     private static final String BACKLIGHT = "/sys/class/backlight/panel0-backlight/brightness";
+    private static final String DC_DIMMING = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/dimlayer_exposure";
 
     private static boolean mAutoHBMActive = false;
     private ExecutorService mExecutorService;
@@ -34,7 +35,8 @@ public class AutoHBMService extends Service {
     private Sensor mLightSensor;
 
     private SharedPreferences mSharedPrefs;
-    private boolean dcDimmingEnabled;
+
+    private boolean mDcDimmingWasEnabled;
 
     private int mStoredBrightness = -1;
 
@@ -54,8 +56,18 @@ public class AutoHBMService extends Service {
         });
     }
 
+    private boolean isDcDimmingEnabled() {
+        return FileUtils.getFileValueAsBoolean(DC_DIMMING, false);
+    }
+
     private void enableHBM(boolean enable) {
         if (enable) {
+
+            if (isDcDimmingEnabled()) {
+                mDcDimmingWasEnabled = true;
+                FileUtils.writeLine(DC_DIMMING, "0");
+            }
+
             // Store current brightness before enabling HBM
             if (mStoredBrightness == -1) {
                 mStoredBrightness = Settings.System.getInt(getContentResolver(),
@@ -72,6 +84,11 @@ public class AutoHBMService extends Service {
                 Settings.System.putInt(getContentResolver(),
                         Settings.System.SCREEN_BRIGHTNESS, mStoredBrightness);
                 mStoredBrightness = -1;
+            }
+
+            if (mDcDimmingWasEnabled) {
+                FileUtils.writeLine(DC_DIMMING, "1");
+                mDcDimmingWasEnabled = false;
             }
         }
     }
@@ -91,7 +108,7 @@ public class AutoHBMService extends Service {
             long timeToDisableHBM = Long.parseLong(mSharedPrefs.getString(HBMFragment.KEY_HBM_DISABLE_TIME, "1"));
 
             if (lux > luxThreshold) {
-                if ((!mAutoHBMActive || !isCurrentlyEnabled()) && !keyguardShowing && !dcDimmingEnabled) {
+                if ((!mAutoHBMActive || !isCurrentlyEnabled()) && !keyguardShowing) {
                     mAutoHBMActive = true;
                     enableHBM(true);
                 }

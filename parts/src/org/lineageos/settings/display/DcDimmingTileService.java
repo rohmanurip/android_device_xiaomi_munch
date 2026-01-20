@@ -28,7 +28,9 @@ import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import androidx.preference.PreferenceManager;
 import android.provider.Settings;
+import android.widget.Toast;
 
+import org.lineageos.settings.R;
 import org.lineageos.settings.utils.FileUtils;
 
 import java.io.File;
@@ -112,7 +114,17 @@ public class DcDimmingTileService extends TileService {
     public void onClick() {
         super.onClick();
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        
+        // Check if HBM is currently enabled
+        final boolean hbmEnabled = sharedPrefs.getBoolean(HBM_KEY, false);
         final boolean enabled = !(sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false));
+        
+        if (enabled && hbmEnabled) {
+            // Prevent enabling DC Dimming when HBM is on
+            Toast.makeText(this, R.string.dc_dimming_hbm_conflict, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
         FileUtils.writeLine(DC_DIMMING_NODE, enabled ? "1" : "0");
         if (enabled) {
             disableHBM();

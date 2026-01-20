@@ -59,4 +59,8 @@
     <string name="dc_dimming_enable_title">DC Dimming</string>
     <string name="dc_dimming_enable_summary">Reduces eye strain in low light conditions</string>
     <string name="dc_dimming_enable_summary_not_supported">DC Dimming is currently not supported by the kernel</string>
+
+    <!-- DC Dimming and HBM conflict messages -->
+    <string name="dc_dimming_hbm_conflict">Please disable HBM mode</string>
+    <string name="hbm_dc_dimming_conflict">Please disable DC Dimming</string>
 </resources>

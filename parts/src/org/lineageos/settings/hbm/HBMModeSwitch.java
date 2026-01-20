@@ -22,6 +22,8 @@ import android.content.SharedPreferences;
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceManager;
+import android.widget.Toast;
+import org.lineageos.settings.R;
 import org.lineageos.settings.utils.FileUtils;
 import org.lineageos.settings.display.*;
 
@@ -51,12 +53,15 @@ public class HBMModeSwitch implements OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         Boolean enabled = (Boolean) newValue;
-        boolean dcDimmingEnabled = PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(DcDimmingTileService.DC_DIMMING_ENABLE_KEY, false);
-        if (dcDimmingEnabled) {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        boolean dcDimmingEnabled = sharedPrefs.getBoolean(DcDimmingTileService.DC_DIMMING_ENABLE_KEY, false);
+        
+        if (enabled && dcDimmingEnabled) {
+            // Prevent enabling HBM when DC Dimming is on
+            Toast.makeText(mContext, R.string.hbm_dc_dimming_conflict, Toast.LENGTH_SHORT).show();
             return false;
         }
         
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         if (enabled) {
             // Save current brightness level
             int currentBrightness = Settings.System.getInt(mContext.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 128);

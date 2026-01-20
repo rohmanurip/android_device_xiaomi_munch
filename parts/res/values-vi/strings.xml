@@ -58,4 +58,8 @@
     <string name="dc_dimming_enable_title">DC Dimming</string>
     <string name="dc_dimming_enable_summary">Giảm mỏi mắt trong điều kiện ánh sáng yếu</string>
     <string name="dc_dimming_enable_summary_not_supported">DC Dimming hiện chưa được kernel hỗ trợ</string>
+
+    <!-- DC Dimming and HBM conflict messages -->
+    <string name="dc_dimming_hbm_conflict">Vui lòng tắt chế độ HBM</string>
+    <string name="hbm_dc_dimming_conflict">Vui lòng tắt DC Dimming</string>
 </resources>

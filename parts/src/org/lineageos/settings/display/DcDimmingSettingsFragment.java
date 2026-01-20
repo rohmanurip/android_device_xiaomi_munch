@@ -27,6 +27,7 @@ import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import androidx.preference.SwitchPreferenceCompat;
 import android.provider.Settings;
@@ -65,6 +66,17 @@ public class DcDimmingSettingsFragment extends PreferenceFragment implements
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (DC_DIMMING_ENABLE_KEY.equals(preference.getKey())) {
             boolean enabled = (boolean) newValue;
+            
+            // Check if HBM is currently enabled
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+            boolean hbmEnabled = sharedPrefs.getBoolean(HBM_KEY, false);
+            
+            if (enabled && hbmEnabled) {
+                // Prevent enabling DC Dimming when HBM is on
+                Toast.makeText(getContext(), R.string.dc_dimming_hbm_conflict, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            
             FileUtils.writeLine(DC_DIMMING_NODE, enabled ? "1" : "0");
             if (enabled) {
                 disableHBM();
