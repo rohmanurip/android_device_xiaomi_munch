@@ -14,6 +14,24 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Inherit from munch device
 $(call inherit-product, device/xiaomi/munch/device.mk)
 
+# Maintainer
+# AVIUM_MAINTAINER is a string that represents the maintainer of the build.
+AVIUM_MAINTAINER ?= rohmanurip
+
+# Settings
+# Soc model name
+AVIUM_SETTINGS_SOC_MODEL_NAME ?= SM8250-AC
+# Device code name
+AVIUM_SETTINGS_DEVICE_CODENAME ?= Munch(in)
+
+WITH_GMS ?= true
+
+TARGET_INCLUDE_GOOGLEIME ?= true
+TARGET_GOOGLEIME_OVERRIDE_IME ?= true
+
+AVIUM_FORCE_SET_FAKE_PROP ?= true
+AVIUM_VERSION_APPEND_TIME_OF_DAY ?= false
+
 PRODUCT_NAME := lineage_munch
 PRODUCT_DEVICE := munch
 PRODUCT_MANUFACTURER := Xiaomi

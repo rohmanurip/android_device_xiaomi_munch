@@ -441,6 +441,11 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     usb_compositions.conf
 
+# VINTF
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
+PRODUCT_ENFORCE_VINTF_MANIFEST := false
+PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := false
+
 # Vendor service manager
 PRODUCT_PACKAGES += \
     vndservicemanager
