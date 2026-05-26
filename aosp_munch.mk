@@ -9,19 +9,20 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit some common hertzify stuff.
-$(call inherit-product, vendor/hertzify/config/common_full_phone.mk)
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
 # Inherit from munch device
 $(call inherit-product, device/xiaomi/munch/device.mk)
 
-PRODUCT_NAME := hertzify_munch
+PRODUCT_NAME := aosp_munch
 PRODUCT_DEVICE := munch
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := Poco
 PRODUCT_MODEL := 22021211RG
 
-HERTZIFY_MAINTAINER := HDzungx
-HERTZIFY_BUILD_TYPE := OFFICIAL
+TARGET_SUPPORT_MINIMAL_GAPPS := true
+TARGET_HAS_GEMINI_BOOTANIMATION := true
+TARGET_BOOT_ANIMATION_RES := 1080
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 

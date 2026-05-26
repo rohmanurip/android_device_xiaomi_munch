@@ -5,5 +5,5 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/hertzify_munch.mk
+    $(LOCAL_DIR)/aosp_munch.mk
 

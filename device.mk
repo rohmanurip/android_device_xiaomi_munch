@@ -20,7 +20,12 @@ $(call inherit-product, hardware/dolby/dolby.mk)
 endif
 
 # Private key for signed build
--include vendor/private-keys/keys/keys.mk
+-include vendor/priv-keys/keys.mk
+
+# Vintf
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
+PRODUCT_ENFORCE_VINTF_MANIFEST := false
+PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := false
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -408,7 +413,7 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/google/interfaces \
     hardware/google/pixel \
-    hardware/hertzify/interfaces/power-libperfmgr \
+    hardware/lineage/interfaces/power-libperfmgr \
     hardware/qcom-caf/common/libqti-perfd-client \
     hardware/xiaomi \
     vendor/qcom/opensource/usb/etc
